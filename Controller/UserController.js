@@ -11,7 +11,9 @@ exports.addUser = function(req, res){
         res.json({message : 'The user was created successfully'})
     });
 
-    exports.getUser = function(req , res){
+    
+}
+exports.getUser = function(req , res){
         model.find(function(err, users){
             if(err){
                 res.json({err: err, message : 'user not found'})
@@ -22,5 +24,14 @@ exports.addUser = function(req, res){
 
         });
     }
+exports.deleteUser = function(req, res){
+    var options = {_id : req.params.id};
+    model.remove(options,  function(err){
+        if(err)res.json ({err:err, message : 'an error occured'});
+        else{
+            res.json({message : 'user deleted'});
+        }
+
+    })
 }
 
