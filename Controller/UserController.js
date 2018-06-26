@@ -35,27 +35,39 @@ exports.deleteUser = function(req, res){
     });
 }
 
-eports.getUserByParam = function(req, res){
+exports.getUserByParam = function(req, res){
    
     var key = req.params.key;
-    var values = req.params.value,
+    var values = req.params.values;
         
         switch (key) {
             case 'name': 
-                
+                model.find({name : /name/i,}, 'name email', function(err, info){
+                    if(err) res.json({message:'Name does not exist'});
+                    res.json({message: info});
+                    
+                });
                 break;
             case 'email':
+                model.findOne({email : values},'name email', function(err, info){
+                    if(err) res.json({message:'Couldnt find the name'});
+                    res.json({message:info});
+                });
             
                 break;
 
             case 'id':
+                model.findById({values: 'name email'},function(err, info){
+                    if(err) res.json({message:'Couldnt find the user with the specified id'});
+                    res.json({message:info});
+                });
 
                 break;
         
             default:
-                res.json("Invalid input");
+                res.json('Invalid input');
                 break;
         }
-    }
+}
 
 
