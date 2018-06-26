@@ -42,7 +42,7 @@ exports.getUserByParam = function(req, res){
         
         switch (key) {
             case 'name': 
-                model.find({name : /name/i,}, 'name email', function(err, info){
+                model.find({name : values,}, '-password', function(err, info){
                     if(err) res.json({message:'Name does not exist'});
                     res.json({message: info});
                     
@@ -57,7 +57,7 @@ exports.getUserByParam = function(req, res){
                 break;
 
             case 'id':
-                model.findById({values: 'name email'},function(err, info){
+                model.findById({id:values}, 'name email',function(err, info){
                     if(err) res.json({message:'Couldnt find the user with the specified id'});
                     res.json({message:info});
                 });

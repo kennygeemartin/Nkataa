@@ -6,6 +6,6 @@ var userController = require('../Controller/UserController');
 router.post('/create', userController.addUser);
 router.get('/',userController.getUser ); 
 router.get('/delete:id',userController.deleteUser);
-router.get('/getUserByParam', userController.getUserByParam);
+router.get('/getUserByParam/:key/:values', userController.getUserByParam);
 
 module.exports = router;
