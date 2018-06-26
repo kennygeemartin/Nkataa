@@ -5,6 +5,6 @@ var userController = require('../Controller/UserController');
 /* GET users listing. */
 router.post('/create', userController.addUser);
 router.get('/',userController.getUser ); 
-
+router.get('/delete:id',userController.deleteUser);
 
 module.exports = router;

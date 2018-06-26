@@ -19,7 +19,7 @@ exports.getUser = function(req , res){
                 res.json({err: err, message : 'user not found'})
             }
             else{
-                res.json(user);
+                res.json(users);
             }
 
         });
@@ -32,6 +32,30 @@ exports.deleteUser = function(req, res){
             res.json({message : 'user deleted'});
         }
 
-    })
+    });
 }
+
+eports.getUserByParam = function(req, res){
+   
+    var key = req.params.key;
+    var values = req.params.value,
+        
+        switch (key) {
+            case 'name': 
+                
+                break;
+            case 'email':
+            
+                break;
+
+            case 'id':
+
+                break;
+        
+            default:
+                res.json("Invalid input");
+                break;
+        }
+    }
+
 
