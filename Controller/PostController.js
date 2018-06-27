@@ -1,30 +1,30 @@
-// var model = require('../Models/Post');
+var model = require('../Models/Post');
 
-// var makePost = function(req, res){
-//     var value = {
-//         time = Date.now,
-//         postBody : req.body.postBody,
-        
-//     }
+exports.createPost = function(req, res){
+    var data = {
+        time: Date.now(),
+        postBody: req.body.postBody,
+        user: req.body.user,
+        comments: [],
+    }
+    model.create(data, function(err){
+        if (err) res.json({err: err, message: 'Sorry, the post could not be created'});
+        res.json({message: 'post created successfully'});
+    });
+}
 
-//     model.create(post,function(err){
-//         if(err) res.json({message : "Post not created"});
-//         res.json({message: 'Post has been created'});
-//     });
-// }
+exports.viewPosts = function(req, res){
+    model.find(function(err, posts){
+        if (err) res.json({err: err, message: 'Cant find the post'});
+        res.json(posts);
+    });
+}
 
-// var getPost = function(req, res){
-//     model.find(function(err, users){
-//         if(err)res.json('No post found');
-//         res.json({message : postBody});
-//     });
-// }
+exports.deletePost = function(req, res){
+    var options = {_id: req.params.id};
+    model.remove(options, function(err){
+        if (err) res.json({err:err, message:'an error occurred while deleting the post'});
+        res.json({message: 'post deleted'});
+    });
+}
 
-
-// var deletePost = function(req, res){
-//     var options = {postBody : req.params.id};
-//     model.remove(options, function(err){
-//         if(err)res.json({message: 'An error occured'});
-//         res.json('Post has been deleted');
-//     })
-// }
