@@ -57,7 +57,7 @@ exports.getUserByParam = function(req, res){
                 break;
 
             case 'id':
-                model.findById({id:values}, 'name email',function(err, info){
+                model.findById({id : values}, 'name email',function(err, info){
                     if(err) res.json({message:'Couldnt find the user with the specified id'});
                     res.json({message:info});
                 });
