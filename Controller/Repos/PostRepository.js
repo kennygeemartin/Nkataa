@@ -5,3 +5,6 @@ function PostRepository(){
 
 }
 
+PostRepository.prototype = BaseRepository(model);
+
+module.exports =  new PostRepository(model);

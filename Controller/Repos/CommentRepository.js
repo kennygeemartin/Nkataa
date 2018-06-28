@@ -6,8 +6,6 @@ function CommentRepository(){
 
 }
 
-CommentRepository.prototype = BaseRepository();
+CommentRepository.prototype = BaseRepository(model);
 
-module.exports = function(model){
-    return CommentRepository(model);
-}
+module.exports = new CommentRepository();
