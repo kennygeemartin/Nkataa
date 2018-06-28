@@ -10,6 +10,10 @@ BaseRepository.prototype.get = function(options, callback){
     this.model.find(options, callback);
 }
 
+BaseRepository.prototype.update  = function(id, info, callback){
+    this.model.findByIdAndUpdate(id, options,callback);
+}
+
 BaseRepository.prototype.add = function(data, callback){
     this.model.create(data, callback);
 }
