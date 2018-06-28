@@ -22,5 +22,12 @@ BaseRepository.prototype.getById = function(id, callback){
     this.model.findById(id, callback);
 }
 
-module.exports(router);
+BaseRepository.prototype.getWithPopulate = function(option, parameter, callback){
+    this.model.find(options).populate(param).exec(callback);
+}
+
+module.exports = function(model){
+   return new BaseRepository(model);
+}
+    
 
